@@ -1,0 +1,38 @@
+﻿[
+{
+  "politeness": "RUDE",
+  "condition": "NORMAL",
+  "cap": {
+  	"nameOfUser": "Алисt"
+	"fullness": 122
+  },
+  "date": "10.12.2000",
+  "size": 124,
+  "name": "Алисt",
+  "x": 10
+  },
+{
+  "politeness": "RUDE",
+  "size": 1245,
+  "condition": "NORMAL",
+  "date": "12.04.2124",
+  "cap": {
+  	"nameOfUser": "Алисt"
+	"fullness": 122
+  },
+  "name": "Алисt",
+  "x": 10
+  },
+{
+  "politeness": "RUDE",
+  "condition": "NORMAL",
+  "date": "10.12.2000",
+  "size": 3,
+  "cap": {
+  	"nameOfUser": "Алисt"
+	"fullness": 122
+  },
+  "name": "Алисt",
+  "x": 10
+  }
+]
