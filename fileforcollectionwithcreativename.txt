@@ -1,0 +1,38 @@
+﻿[
+{
+  "politeness": "RUDE",
+  "condition": "NORMAL",
+  "cap": {
+  	"nameOfUser": "Alice"
+	"fullness": 122
+  },
+  "date": "2016-10-02T20:15:30+01:00",
+  "size": 124,
+  "name": "Alice",
+  "x": 10
+  },
+{
+  "politeness": "RUDE",
+  "size": 1245,
+  "condition": "NORMAL",
+  "date": "2016-10-02T20:15:30+01:00",
+  "cap": {
+  	"nameOfUser": "AER"
+	"fullness": 122
+  },
+  "name": "AER",
+  "x": 10
+  },
+{
+  "politeness": "RUDE",
+  "condition": "NORMAL",
+  "date": "2016-10-02T20:15:30+01:00",
+  "size": 3,
+  "cap": {
+  	"nameOfUser": "Tre"
+	"fullness": 122
+  },
+  "name": "Tre",
+  "x": 10
+  }
+]

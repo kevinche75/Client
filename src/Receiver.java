@@ -22,20 +22,45 @@ public class Receiver extends Thread {
                     channel.receive(buffer);
                     try (ObjectInputStream receivedstream = new ObjectInputStream(new ByteArrayInputStream(buffer.array()))) {
                         ServerMessage message = (ServerMessage) receivedstream.readObject();
-                        switch (message.getMessage()) {
+                        switch (message.getSpecialWord()) {
                             case "DISCONNECTION":
                                 reader.setWorkable(false);
                                 reader.setGetMessage(false);
-                                System.out.println("===\nСервер отключился. Введите что-нибудь для продолжения");
+                                reader.setTrueRegistration(false);
+                                reader.setGetLogin(false);
+                                reader.setLogined(false);
+                                System.out.println(message.getMessage());
+                                System.out.println("Введите что-нибудь для продолжения");
                                 break;
                             case "MAX_NUMBER":
                                 reader.setWorkable(false);
                                 reader.setGetMessage(true);
-                                System.out.println("===\nМаксимальное число пользователей на сервере");
+                                System.out.println(message.getMessage());
                                 break;
                             case "CONNECTION":
                                 reader.setGetMessage(true);
                                 reader.setWorkable(true);
+                                System.out.println(message.getMessage());
+                                break;
+                            case "TRUE_LOGIN":
+                                reader.setGetLogin(true);
+                                reader.setLogined(true);
+                                reader.setToken(Integer.parseInt(message.getMessage()));
+                                break;
+                            case "FALSE_LOGIN":
+                                reader.setGetLogin(true);
+                                reader.setLogined(false);
+                                System.out.println(message.getMessage());
+                                break;
+                            case "FALSE_REGISTER_LOGIN":
+                                reader.setGetLogin(true);
+                                reader.setTrueRegistration(false);
+                                System.out.println(message.getMessage());
+                                break;
+                            case "TRUE_REGISTER_LOGIN":
+                                reader.setGetLogin(true);
+                                reader.setTrueRegistration(true);
+                                System.out.println(message.getMessage());
                                 break;
                             default:
                                 System.out.println(message.getMessage());

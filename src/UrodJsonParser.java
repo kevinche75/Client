@@ -1,12 +1,14 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 
 public class UrodJsonParser {
-
 
 
     public CopyOnWriteArrayList<Alice> getArraysofAliceObjects(String rawarrays){
@@ -56,13 +58,12 @@ public class UrodJsonParser {
         boolean fullness = false;
         boolean date = false;
         boolean size = false;
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
         Politeness politeness_characteristic = null;
         String nameOfUser_characteristic  = null;
         String name_characteristic  = null;
         String date_characteristic = null;
         int size1 = 0;
-        Date date1 = null;
+        ZonedDateTime date1 = null;
         int fullness1 = 0;
         int x1=0;
         while(rawjson.contains("\"")){
@@ -192,8 +193,9 @@ public class UrodJsonParser {
                         date = true;
                         date_characteristic  = rawjson.substring(0,rawjson.indexOf("\""));
                         try {
-                            date1 = format.parse(date_characteristic);
-                        } catch (ParseException e) {
+                            date1 = ZonedDateTime.parse(date_characteristic,
+                                    DateTimeFormatter.ISO_DATE_TIME);
+                        } catch (DateTimeParseException e) {
                             throw new JsonException("date (неправильно указано значение)");
                         }
                         rawjson = rawjson.substring(rawjson.indexOf("\"")+1);
@@ -255,11 +257,11 @@ public class UrodJsonParser {
         if(!name_characteristic .equals(nameOfUser_characteristic )) throw new JsonException("обнаружено, что name и nameOfUser не совпадает");
         if(!date) throw new JsonException("поле date отсутствует");
         if(!size) throw new JsonException("поле size отсутствует");
-        return new Alice(name_characteristic ,politeness_characteristic,x1,fullness1,date_characteristic,size1);
+        return new Alice(name_characteristic ,politeness_characteristic,x1,fullness1,date1,size1);
     }
 
     private String getAliceInString(Alice aliceforwriting){
-        return "{\n  \"politeness\": \"" + aliceforwriting.getPoliteness() + "\",\n  \"date\": " +aliceforwriting.getDate()+ "\",\n  \"size\": " +aliceforwriting.getSize() + "\",\n  \"condition\": \"NORMAL\",\n  \"cap\": {\n  \t\"nameOfUser\": \"" + aliceforwriting.getName() + "\"\n\t\"fullness\": " + aliceforwriting.getfullness() + "\n  },\n  \"name\": \""+aliceforwriting.getName()+"\",\n  \"x\": " + aliceforwriting.getLocation() + "\n  }";
+        return "{\n  \"politeness\": \"" + aliceforwriting.getPoliteness() + "\",\n  \"date\": \"" +aliceforwriting.getDate()+ "\",\n  \"size\": " +aliceforwriting.getSize() + ",\n  \"condition\": \"NORMAL\",\n  \"cap\": {\n  \t\"nameOfUser\": \"" + aliceforwriting.getName() + "\"\n\t\"fullness\": " + aliceforwriting.getfullness() + "\n  },\n  \"name\": \""+aliceforwriting.getName()+"\",\n  \"x\": " + aliceforwriting.getLocation() + "\n  }";
          }
 
     public String getWrittenAlices (CopyOnWriteArrayList<Alice> linkedList){

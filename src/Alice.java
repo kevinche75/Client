@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -8,11 +9,11 @@ public class Alice extends Human implements Comparable<Alice>, Serializable {
     private Politeness politeness;
     private Condition condition = Condition.NORMAL;
     private CupOfTea cap;
-    private String date;
+    private ZonedDateTime date;
     private int size;
     static final long serialVersionUID = 2;
 
-    public String getDate() {
+    public ZonedDateTime getDate() {
         return date;
     }
 
@@ -59,7 +60,7 @@ public int getfullness(){
         return this.politeness;
     }
 
-    public Alice(String name, Politeness politeness, int location,int fullness, String date, int size) {
+    public Alice(String name, Politeness politeness, int location,int fullness, ZonedDateTime date, int size) {
         setName(name);
         setLocation(location);
         this.politeness = politeness;
@@ -102,6 +103,7 @@ public int getfullness(){
         setLocation(0);
         this.politeness = Politeness.POLITE;
         cap = new CupOfTea("Алиса");
+        date = ZonedDateTime.now();
     }
 
     public Alice(String name) {

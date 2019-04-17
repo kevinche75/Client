@@ -9,32 +9,32 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class Reader {
 
 
-    static public CopyOnWriteArrayList<Alice> justReadFile(Scanner scanner)throws FileNotFoundException{
-        return readFile(getFilePath(scanner));
+
+    static public CopyOnWriteArrayList<Alice> justReadFile(String path)throws FileNotFoundException{
+        return readFile(path);
     }
 
-    static private String getFilePath(Scanner scanner) {
-        String path = System.getenv("COLLECTION_PATH");
-        //System.out.println(System.getProperty("user.dir"));
-        if (path == null) {
-            System.out.println("===\nПуть через переменную окружения COLLECTION_PATH не указан\nНапишите адрес вручную(в консоль)");
-            path = scanner.nextLine();
-        }
-        while(true) {
-            System.out.println("===\nВведеный адрес " + path + ".\nЕсли адрес верный введите \"yes\", иначе \"no\" и повторите ввод: ");
-            switch (scanner.nextLine()){
-                case "yes":
-                    return path;
-                case "no":
-                    System.out.println("===");
-                    path = scanner.nextLine();
-                    break;
-                default:
-                    System.out.println("===\nНеизвестный ответ");
-                    break;
-            }
-        }
-    }
+//    static private String getFilePath(Scanner scanner) {
+//        String path = System.getenv("COLLECTION_PATH");
+//        if (path == null) {
+//            System.out.println("===\nПуть через переменную окружения COLLECTION_PATH не указан\nНапишите адрес вручную(в консоль)");
+//            path = scanner.nextLine();
+//        }
+//        while(true) {
+//            System.out.println("===\nВведеный адрес " + path + ".\nЕсли адрес верный введите \"yes\", иначе \"no\" и повторите ввод: ");
+//            switch (scanner.nextLine()){
+//                case "yes":
+//                    return path;
+//                case "no":
+//                    System.out.println("===");
+//                    path = scanner.nextLine();
+//                    break;
+//                default:
+//                    System.out.println("===\nНеизвестный ответ");
+//                    break;
+//            }
+//        }
+//    }
 
     static private void checkFile(File file) throws FileNotFoundException {
         if(!file.exists()) throw new FileNotFoundException("===\nФайл не существует");
